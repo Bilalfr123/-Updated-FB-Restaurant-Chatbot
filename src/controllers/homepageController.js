@@ -132,6 +132,9 @@ let handlePostback = (sender_psid, received_postback) => {
     } else if (payload === 'no') {
         response = { "text": "Oops, try sending another image." }
     }
+     else if (payload === 'GET_STARTED_PAYLOAD') {
+        response = { "text": "Hi welcome" }
+    }
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
 };
