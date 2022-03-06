@@ -160,8 +160,63 @@ let callSendAPI = (sender_psid, response) => {
         }
     });
 };
+let handleSetupInfor = (req,res)=>{
+    //call fb api
+
+     // Send the HTTP request to the Messenger Platform
+   let request_body = {
+    "get_started":{
+        "payload":"GET_STARTED_PAYLOAD"
+      }, "persistent_menu": [
+        {
+            "locale": "default",
+            "composer_input_disabled": false,
+            "call_to_actions": [
+           
+                {
+                    "type": "web_url",
+                    "title": "Shop now",
+                    "url": "https://www.originalcoastclothing.com/",
+                    
+                },
+                {
+                    "type": "web_url",
+                    "title": "Get lost",
+                    "url": "https://www.originalcoastclothing.com/",
+                    "webview_height_ratio": "full"
+                }
+            ]
+        }
+    ]
+   }
+    return new Promise((resolve,reject)=>{
+        try{
+            request({
+                "uri": "https://graph.facebook.com/v13.0/me/messenger_profile?access_token=<PAGE_ACCESS_TOKEN>",
+                "qs": { "access_token": PAGE_ACCESS_TOKEN },
+                "method": "POST",
+                "json": request_body
+            }, (err, response, body) => {
+                console.log(`start`)
+                console.log(`LOgs setup persistent menu and get started button: `, response)
+                console.log(`end--------------`)
+                if (!err) {
+                    return res.send("setup done!")
+                } else {
+                    return res.send("Something went wrong with server please check logs....")
+                }
+            });
+        }catch(e){
+            reject(e)
+        }
+    })
+  
+
+}
 module.exports = {
     getHomepage: getHomepage,
     getWebhook: getWebhook,
-    postWebhook: postWebhook
+    postWebhook: postWebhook,
+    handleSetupInfor:handleSetupInfor
+
 };
