@@ -1,6 +1,6 @@
 require("dotenv").config();
 import request from "request";
-
+import homepageService from 'homepageService'
 const MY_VERIFY_TOKEN = process.env.MY_VERIFY_TOKEN;
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
@@ -133,7 +133,7 @@ let handlePostback = (sender_psid, received_postback) => {
         response = { "text": "Oops, try sending another image." }
     }
      else if (payload === 'GET_STARTED_PAYLOAD') {
-        response = { "text": "Hi welcome" }
+       response = homepageService.handleGetStartedButton();
     }
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
@@ -163,7 +163,7 @@ let callSendAPI = (sender_psid, response) => {
         }
     });
 };
-let handleSetupInfor = (req,res)=>{
+let handleSetupInfor =async (req,res)=>{
     //call fb api
 
      // Send the HTTP request to the Messenger Platform
@@ -216,10 +216,14 @@ let handleSetupInfor = (req,res)=>{
   
 
 }
+let handleGetSurveyPage = (req,res)=>{
+return res.render('survey.ejs')
+}
 module.exports = {
     getHomepage: getHomepage,
     getWebhook: getWebhook,
     postWebhook: postWebhook,
-    handleSetupInfor:handleSetupInfor
+    handleSetupInfor:handleSetupInfor,
+    handleGetSurveyPage:handleGetSurveyPage
 
 };
