@@ -12,7 +12,7 @@ let response =  {
           "subtitle":"(Saving data to google sheets.)",
           "default_action": {
             "type": "web_url",
-            "url": "",
+            "url": "https://web.facebook.com/Darko-106888198616659/?ref=pages_you_manage",
             "webview_height_ratio": "tall",
           },
           "buttons":[
