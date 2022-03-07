@@ -132,9 +132,10 @@ let handlePostback = (sender_psid, received_postback) => {
     } else if (payload === 'no') {
         response = { "text": "Oops, try sending another image." }
     }
-     else if (payload === 'GET_STARTED_PAYLOAD') {
+     else if (payload === 'GET_STARTED_PAYLOAD' || payload === 'RESTART_CONVERSATION') {
        response = homepageService.handleGetStartedButton();
     }
+  
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
 };
@@ -190,7 +191,12 @@ let handleSetupInfor =async (req,res)=>{
                     "title": "Get lost",
                     "url": "https://www.originalcoastclothing.com/",
                     "webview_height_ratio": "full"
-                }
+                },
+                {
+                    "type": "postback",
+                    "title": "Restart Conversation",
+                    "payload" : "RESTART_CONVERSATION"
+                },
             ]
         }
     ],  "whitelisted_domains":[
