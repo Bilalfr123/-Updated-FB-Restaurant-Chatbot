@@ -12,17 +12,7 @@ body{
     font-size: 1.1rem;
 }
 
-.box{
-    background-color: #f0ecff;
-    width: 70%;
-    height: 93%;
-    border: 2px solid black;
-    border-radius: 4px;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center; */
-}
+
 .heading{
     text-align: center;
 }
