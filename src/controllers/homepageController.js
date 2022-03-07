@@ -190,8 +190,12 @@ let handleSetupInfor =async (req,res)=>{
                 }
             ]
         }
+    ],  "whitelisted_domains":[
+        "https://dark1233.herokuapp.com",
+ 
     ]
-   }
+   };
+
     return new Promise((resolve,reject)=>{
         try{
             request({
