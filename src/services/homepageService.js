@@ -22,7 +22,8 @@ let response =  {
               "title":"View Website"
             },{
                 "type":"web_url",
-                "url":`${process.env.URL_WEB_VIEW_SURVEY}`,
+                "url":`${process.env.URL_WEB_VIEW_SURVEY
+                }`,
                 "title":"Start Survey",
                 "webview_height_ratio": "tall",
                 "messenger_extensions":true // false:opn webview in new tab
