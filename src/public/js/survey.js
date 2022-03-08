@@ -59,6 +59,6 @@ window.extAsyncInit = function () {
     }
 })
   } );
-  //closed
+
   
 }
