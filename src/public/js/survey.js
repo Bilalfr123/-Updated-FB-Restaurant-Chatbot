@@ -25,8 +25,8 @@ window.extAsyncInit = function () {
   
 document.getElementById('submitBtn').addEventListener('click',function ()
 {console.log("hi")
+window.top.close() 
 MessengerExtensions.requestCloseBrowser(function success() {
-  window.top.close()
   //webview closed
   // let dataBody = {
   //     // psid: document.getElementById("psid").value,
