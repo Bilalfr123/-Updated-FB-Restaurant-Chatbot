@@ -41,7 +41,7 @@ window.extAsyncInit = function () {
     data: dataBody,
     url: `${window.location.origin}/post-survey`,
     success: function (data) {
-      alert('succes',data )
+      console.log('succes',data )
         //on Close webview
         MessengerExtensions.requestCloseBrowser(function success() {
             // webview closed
