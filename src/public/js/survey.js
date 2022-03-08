@@ -34,6 +34,7 @@ window.extAsyncInit = function () {
       country: document.getElementById("country").value || undefined,
       email: document.getElementById("email").value || undefined ,
     phonenumber: document.getElementById("phonenumber").value || undefined ,
+    note: document.getElementById("note").value || undefined ,
   
   }
   $.ajax({

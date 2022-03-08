@@ -243,16 +243,51 @@ let name = req.body.name
 let country = req.body.country
 let email = req.body.email
 let phonenumber = req.body.phonenumber
+let note = req.body.note
 
-
-await callSendAPI(psid, { text: `Done!\nYour information 's recorded!
-${name} ${country} ${phonenumber} ${psid}` });
+await writeDataToGoogleSheet();
+await callSendAPI(psid, { text: `Done!\nYour information 's recorded!` });
 
 
 
    return res.status(200).json({
        message: 'ok'
    })
+}
+let writeDataToGoogleSheet = async (name, country, email, phonenumber, note) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            // Initialize the sheet - doc ID is the long id in the sheets URL
+            const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID);
+
+            // Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/getting-started/authentication
+            await doc.useServiceAccountAuth({
+                client_email: JSON.parse(`"${process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL}"`),
+                private_key: JSON.parse(`"${process.env.GOOGLE_PRIVATE_KEY}"`),
+            });
+            await doc.loadInfo(); // loads document properties and worksheets
+
+            const sheet = doc.sheetsByIndex[0];
+            const rows = await sheet.getRows();
+
+            let id = rows.length + 1;
+
+            await sheet.addRow(
+                {
+                    'No': id,
+                    'Name': name,
+                    'Country': country,
+                    'Email': email,
+                    'Phone number': phonenumber,
+                    'Message': note
+                }
+            );
+
+            resolve();
+        } catch (e) {
+            reject(e);
+        }
+    })
 }
 module.exports = {
     getHomepage: getHomepage,
@@ -261,4 +296,5 @@ module.exports = {
     handleSetupInfor:handleSetupInfor,
     handleGetSurveyPage:handleGetSurveyPage,
     handlePostSurvey:handlePostSurvey,
+    writeDataToGoogleSheet:writeDataToGoogleSheet
 };
