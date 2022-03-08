@@ -22,7 +22,7 @@ console.log('hi')
     // error
   }
 );
-document.getElementById('submitBtn').addEventListener('click', function(){
+document.getElementById("submitBtn").addEventListener('click', function(){
     console.log('working')
 //on close webview
 MessengerExtensions.requestCloseBrowser(function success() {
