@@ -43,14 +43,7 @@ window.extAsyncInit = function () {
     success: function (data) {
       console.log('succes',data )
         //on Close webview
-        MessengerExtensions.requestCloseBrowser(function success() {
-            // webview closed
-
-        }, function error(err) {
-            alert('err submit post webview')
-            console.log('err submit post webview', err)
-            // an error occurred
-        });
+      
 
 
     },
