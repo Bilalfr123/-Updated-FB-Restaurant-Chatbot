@@ -10,7 +10,7 @@ window.extAsyncInit = function () {
   console.log(`err`)
   // the Messenger Extensions JS SDK is done loading 
   //get user PSID
-    MessengerExtensions.getContext( facebookAppId , 
+    MessengerExtensions.getContext( '631677451454332' , 
     function success(thread_context){
         let userPSID = thread_context.psid;
         console.log(userPSID)
