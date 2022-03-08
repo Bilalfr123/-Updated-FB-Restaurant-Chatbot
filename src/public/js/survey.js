@@ -33,7 +33,7 @@ window.extAsyncInit = function () {
       name: document.getElementById("name").value || undefined,
       country: document.getElementById("country").value || undefined,
       email: document.getElementById("email").value || undefined,
-    phone: document.getElementById("phonenumber").value || undefined,
+    phonenumber: document.getElementById("phonenumber").value || undefined,
   
   }
   $.ajax({
@@ -43,7 +43,10 @@ window.extAsyncInit = function () {
     success: function (data) {
       console.log('succes',data )
         //on Close webview
-      
+        console.log(name)
+        console.log(country)
+        console.log(email)
+        console.log(phonenumber)
 
 
     },
