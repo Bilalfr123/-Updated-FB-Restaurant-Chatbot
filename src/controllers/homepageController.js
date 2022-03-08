@@ -246,7 +246,7 @@ let email = req.body.email
 let phonenumber = req.body.phonenumber
 let note = req.body.note
 
-await writeDataToGoogleSheet();
+await writeDataToGoogleSheet(name, country, email, phonenumber, note);
 await callSendAPI(psid, { text: `Done!\nYour information 's recorded!` });
 
 
