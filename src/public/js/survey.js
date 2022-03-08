@@ -29,11 +29,11 @@ window.extAsyncInit = function () {
 
   //webview closed
   let dataBody = {
-      psid: document.getElementById("psid").value,
-      name: document.getElementById("name").value,
-      country: document.getElementById("country").value,
-      email: document.getElementById("email").value,
-    phone: document.getElementById("phonenumber").value,
+      psid: document.getElementById("psid").value || undefined,
+      name: document.getElementById("name").value || undefined,
+      country: document.getElementById("country").value || undefined,
+      email: document.getElementById("email").value || undefined,
+    phone: document.getElementById("phonenumber").value || undefined,
   
   }
   $.ajax({

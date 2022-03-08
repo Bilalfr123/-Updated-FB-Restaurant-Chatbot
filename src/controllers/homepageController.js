@@ -132,8 +132,10 @@ let handlePostback = (sender_psid, received_postback) => {
     } else if (payload === 'no') {
         response = { "text": "Oops, try sending another image." }
     }
-     else if (payload === 'GET_STARTED_PAYLOAD' || payload === 'RESTART_CONVERSATION') {
+     else if (payload === 'GET_STARTED_PAYLOAD') {
        response = homepageService.handleGetStartedButton();
+    } else if (payload === 'RESTART_CONVERSATION') {
+        response = homepageService.handleGetStartedButton();
     }
   
     // Send the message to acknowledge the postback
@@ -235,9 +237,19 @@ return res.render('survey.ejs' , {
 })
 }
 let handlePostSurvey = (req,res)=>{
-   console.log('data from webview')
-   console.log('psid' , req.body.psid)
-   console.log('name' , req.body.name)
+
+let psid = req.body.psid
+let name = req.body.name
+let country = req.body.country
+let email = req.body.email
+let phonenumber = req.body.phonenumber
+
+
+await this.callSendAPI(psid, { text: `Done!\nYour information 's recorded!
+${name,country,email,phonenumber}` });
+
+
+
    return res.status(200).json({
        message: 'ok'
    })
