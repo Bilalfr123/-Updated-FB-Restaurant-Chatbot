@@ -229,7 +229,7 @@ let handleSetupInfor =async (req,res)=>{
 
 }
 let handleGetSurveyPage = (req,res)=>{
-    let facebookAppId = process.env.FACEBOOK_APP_ID
+    let facebookAppId = process.env.FACEBOOK_APP_ID;
 return res.render('survey.ejs' , {
     facebookAppId :facebookAppId
 })
