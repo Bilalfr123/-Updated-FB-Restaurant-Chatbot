@@ -4,6 +4,7 @@
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
   fjs.parentNode.insertBefore(js, fjs);
+  console.log('stat')
 }(document, 'script', 'Messenger'));
 window.extAsyncInit = function () {
   // the Messenger Extensions JS SDK is done loading 
@@ -11,10 +12,12 @@ window.extAsyncInit = function () {
   MessengerExtensions.getContext( facebookAppId , 
   function success(thread_context){
     let userPSID = thread_context.psid;
+    console.log(userPSID)
     document.getElementById("psid").value = userPSID
 
   },
   function error(err){
+    console.log(err)
     // error
   }
 );
@@ -43,6 +46,8 @@ MessengerExtensions.requestCloseBrowser(function success() {
   .then(res => console.log(res));
 }, function error(err) {
   // an error occurred
+  console.log(err)
+
 });
 } );
 //closed
