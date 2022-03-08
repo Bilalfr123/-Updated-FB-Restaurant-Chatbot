@@ -245,7 +245,7 @@ let email = req.body.email
 let phonenumber = req.body.phonenumber
 
 
-await this.callSendAPI(psid, { text: `Done!\nYour information 's recorded!
+await callSendAPI(psid, { text: `Done!\nYour information 's recorded!
 ${name,country,email,phonenumber}` });
 
 
