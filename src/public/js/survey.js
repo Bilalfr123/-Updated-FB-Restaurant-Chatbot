@@ -1,3 +1,4 @@
+console.log('hi')
 (function(d, s, id){
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) {return;}
@@ -22,6 +23,7 @@
   }
 );
 document.getElementById('submitBtn').addEventListener('click', function(){
+    console.log('working')
 //on close webview
 MessengerExtensions.requestCloseBrowser(function success() {
     // webview closed
