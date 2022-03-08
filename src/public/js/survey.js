@@ -27,7 +27,7 @@ window.extAsyncInit = function () {
 {console.log("hi")
 // window.top.close() 
 
-  //webview closed
+  //webview closedd
   let dataBody = {
       psid: document.getElementById("psid").value || undefined,
       name: document.getElementById("name").value || undefined,
