@@ -26,7 +26,7 @@ let response =  {
                 }`,
                 "title":"Start Survey",
                 "webview_height_ratio": "tall",
-                "messenger_extensions":true // false:opn webview in new tab
+                "messenger_extensions":false // false:opn webview in new tab
             }              
           ]      
         }

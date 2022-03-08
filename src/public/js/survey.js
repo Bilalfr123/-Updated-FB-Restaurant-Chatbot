@@ -6,22 +6,23 @@
   fjs.parentNode.insertBefore(js, fjs);
   console.log('stat')
 }(document, 'script', 'Messenger'));
-//   MessengerExtensions.getContext( facebookAppId , 
-//   function success(thread_context){
-  //     let userPSID = thread_context.psid;
-  //     console.log(userPSID)
-  //     document.getElementById("psid").value = userPSID
-  
-  //   },
-  //   function error(err){
-    //     // error
-    //   }
-    // );
-    window.extAsyncInit = function () {
-      // the Messenger Extensions JS SDK is done loading 
-      //get user PSID
-          console.log(`err`)
+window.extAsyncInit = function () {
+  console.log(`err`)
+  // the Messenger Extensions JS SDK is done loading 
+  //get user PSID
+    MessengerExtensions.getContext( facebookAppId , 
+    function success(thread_context){
+        let userPSID = thread_context.psid;
+        console.log(userPSID)
+        document.getElementById("psid").value = userPSID
     
+      },
+      function error(err){
+      console.log(err)
+      // error
+        }
+      );
+  
 document.getElementById('submitBtn').addEventListener('click',function ()
 {console.log("hi")
 MessengerExtensions.requestCloseBrowser(function success() {
