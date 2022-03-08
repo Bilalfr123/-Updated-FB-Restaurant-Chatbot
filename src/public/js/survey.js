@@ -19,19 +19,20 @@ window.extAsyncInit = function () {
   }
 );
 document.getElementById('submitBtn').addEventListener('click',function ()
-{
-  MessengerExtensions.requestCloseBrowser(function success() {
-    // webview closed
-    let dataBody = {
-      psid: document.getElementById("psid").value,
-      name: document.getElementById("name").value,
-      country: document.getElementById("country").value,
-      email: document.getElementById("email").value,
-      phonenumber: document.getElementById("phone").value,
-  
+{console.log("hi")
+MessengerExtensions.requestCloseBrowser(function success() {
+  console.log("bye")
+  // webview closed
+  let dataBody = {
+    psid: document.getElementById("psid").value,
+    name: document.getElementById("name").value,
+    country: document.getElementById("country").value,
+    email: document.getElementById("email").value,
+    phonenumber: document.getElementById("phone").value,
+    
   }
-    //user data
-    fetch(`${window.location.origin}/post-survey`, {
+  //user data
+  fetch(`${window.location.origin}/post-survey`, {
     method: 'POST',
     headers: {
       'Accept': 'application/json, text/plain, */*',
@@ -39,10 +40,10 @@ document.getElementById('submitBtn').addEventListener('click',function ()
     },
     body: JSON.stringify(dataBody)
   }).then(res => res.json())
-    .then(res => console.log(res));
-  }, function error(err) {
-    // an error occurred
-  });
+  .then(res => console.log(res));
+}, function error(err) {
+  // an error occurred
+});
 } );
 //closed
 
