@@ -27,6 +27,7 @@ document.getElementById("submitBtn").addEventListener('click', function(){
     MessengerExtensions.requestCloseBrowser(function success() {
         // webview closed
       }, function error(err) {
+          console.log(err)
         // an error occurred
       });
 
