@@ -10,7 +10,7 @@ window.extAsyncInit = function () {
   console.log(`err`)
   // the Messenger Extensions JS SDK is done loading 
   //get user PSID
-    MessengerExtensions.getContext( '631677451454332' , 
+    MessengerExtensions.getContext( facebookAppId , 
     function success(thread_context){
         let userPSID = thread_context.psid;
         console.log(userPSID)
@@ -23,33 +23,41 @@ window.extAsyncInit = function () {
         }
       );
   
-document.getElementById('submitBtn').addEventListener('click',function ()
+      $('#submitBtn').on('click', function () 
 {console.log("hi")
-window.top.close() 
-MessengerExtensions.requestCloseBrowser(function success() {
+// window.top.close() 
+
   //webview closed
-  // let dataBody = {
-  //     // psid: document.getElementById("psid").value,
-  //     name: document.getElementById("name").value,
-  //     country: document.getElementById("country").value,
-  //     email: document.getElementById("email").value,
-  //   phonenumber: document.getElementById("phone").value,
+  let dataBody = {
+      psid: document.getElementById("psid").value,
+      name: document.getElementById("name").value,
+      country: document.getElementById("country").value,
+      email: document.getElementById("email").value,
+    phonenumber: document.getElementById("phone").value,
   
-  // }
-  // fetch(`${window.location.origin}/post-survey`, {
-  //     method: 'POST',
-  //     headers: {
-  //         'Accept': 'application/json, text/plain, */*',
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify(dataBody)
-  //     }).then(res => res.json())
-  //     .then(res => console.log(res));
-    }, function error(err) {
-      // an error occurred
-      console.log(err)
-      
-    });
+  }
+  $.ajax({
+    method: 'POST',
+    data: dataBody,
+    url: `${window.location.origin}/post-survey`,
+    success: function (data) {
+      alert('succes',data )
+        //on Close webview
+        MessengerExtensions.requestCloseBrowser(function success() {
+            // webview closed
+
+        }, function error(err) {
+            alert('err submit post webview')
+            console.log('err submit post webview', err)
+            // an error occurred
+        });
+
+
+    },
+    error: function (error) {
+        console.log('error response from node js server :', error)
+    }
+})
   } );
   //closed
   
