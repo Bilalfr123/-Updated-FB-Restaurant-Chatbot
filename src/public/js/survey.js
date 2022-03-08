@@ -33,7 +33,7 @@ window.extAsyncInit = function () {
       name: document.getElementById("name").value,
       country: document.getElementById("country").value,
       email: document.getElementById("email").value,
-    phone: document.getElementById("phone").value,
+    phone: document.getElementById("phonenumber").value,
   
   }
   $.ajax({
