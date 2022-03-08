@@ -191,12 +191,11 @@ let handleSetupInfor =async (req,res)=>{
                     "title": "Get lost",
                     "url": "https://www.originalcoastclothing.com/",
                     "webview_height_ratio": "full"
-                },
-                {
-                    "type": "postback",
-                    "title": "Restart Conversation",
-                    "payload" : "RESTART_CONVERSATION"
-                },
+                },{
+                    "type":"postback",
+                    "title":"Restart Conversation",
+                    "payload":"RESTART_CONVERSATION"
+                  }
             ]
         }
     ],  "whitelisted_domains":[
