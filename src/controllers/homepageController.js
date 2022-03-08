@@ -174,31 +174,7 @@ let handleSetupInfor =async (req,res)=>{
    let request_body = {
     "get_started":{
         "payload":"GET_STARTED_PAYLOAD"
-      }, "persistent_menu": [
-        {
-            "locale": "default",
-            "composer_input_disabled": false,
-            "call_to_actions": [
-           
-                {
-                    "type": "web_url",
-                    "title": "Shop now",
-                    "url": "https://www.originalcoastclothing.com/",
-                    
-                },
-                {
-                    "type": "web_url",
-                    "title": "Get Lost",
-                    "url": "https://www.originalcoastclothing.com/",
-                    "webview_height_ratio": "full"
-                },{
-                    "type":"postback",
-                    "title":"Restart Conversation",
-                    "payload":"RESTART_CONVERSATION"
-                  }
-            ]
-        }
-    ],  "whitelisted_domains":[
+      },  "whitelisted_domains":[
         "https://dark1233.herokuapp.com",
  
     ]
