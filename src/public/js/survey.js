@@ -21,7 +21,7 @@
       // the Messenger Extensions JS SDK is done loading 
       //get user PSID
           console.log(`err`)
-    }
+    
 document.getElementById('submitBtn').addEventListener('click',function ()
 {console.log("hi")
 MessengerExtensions.requestCloseBrowser(function success() {
@@ -53,4 +53,4 @@ MessengerExtensions.requestCloseBrowser(function success() {
   } );
   //closed
   
-  
+}
