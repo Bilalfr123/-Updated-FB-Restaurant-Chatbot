@@ -188,7 +188,7 @@ let handleSetupInfor =async (req,res)=>{
                 },
                 {
                     "type": "web_url",
-                    "title": "Get lost",
+                    "title": "Get Lost",
                     "url": "https://www.originalcoastclothing.com/",
                     "webview_height_ratio": "full"
                 },{
