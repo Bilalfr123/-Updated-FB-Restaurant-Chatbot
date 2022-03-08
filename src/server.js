@@ -17,7 +17,7 @@ configViewEngine(app);
 initWebRoutes(app);
 
 let port = process.env.PORT || 8080;
-
-app.listen(port, () => {
+var server_host = process.env.YOUR_HOST || '0.0.0.0';
+app.listen(port, server_host, function() {
     console.log(`Messenger bot is running at the port ${port}`);
 });

@@ -236,7 +236,7 @@ return res.render('survey.ejs' , {
     facebookAppId :facebookAppId
 })
 }
-let handlePostSurvey = (req,res)=>{
+let handlePostSurvey = async(req,res)=>{
 
 let psid = req.body.psid
 let name = req.body.name
@@ -246,7 +246,7 @@ let phonenumber = req.body.phonenumber
 
 
 await callSendAPI(psid, { text: `Done!\nYour information 's recorded!
-${name,country,email,phonenumber}` });
+${name}` });
 
 
 
