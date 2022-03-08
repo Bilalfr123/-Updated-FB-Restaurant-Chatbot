@@ -246,7 +246,7 @@ let phonenumber = req.body.phonenumber
 
 
 await callSendAPI(psid, { text: `Done!\nYour information 's recorded!
-${name}` });
+${name} ${country} ${phonenumber} ${psid}` });
 
 
 
