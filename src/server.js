@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //config view engine
 configViewEngine(app);
 
-//config web routes
+//config web route
 initWebRoutes(app);
 
 let port = process.env.PORT || 8080;

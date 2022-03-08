@@ -243,7 +243,10 @@ let name = req.body.name
 let country = req.body.country
 let email = req.body.email
 let phonenumber = req.body.phonenumber
-
+console.log(name)
+console.log(country)
+console.log(email)
+console.log(phonenumber)
 
 await callSendAPI(psid, { text: `Done!\nYour information 's recorded!
 ${name}` });
