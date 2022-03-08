@@ -9,25 +9,25 @@
 window.extAsyncInit = function () {
   // the Messenger Extensions JS SDK is done loading 
   //get user PSID
-  MessengerExtensions.getContext( facebookAppId , 
-  function success(thread_context){
-    let userPSID = thread_context.psid;
-    console.log(userPSID)
-    document.getElementById("psid").value = userPSID
+      console.log(`err`)
+//   MessengerExtensions.getContext( facebookAppId , 
+//   function success(thread_context){
+//     let userPSID = thread_context.psid;
+//     console.log(userPSID)
+//     document.getElementById("psid").value = userPSID
 
-  },
-  function error(err){
-    console.log(err)
-    // error
-  }
-);
+//   },
+//   function error(err){
+//     // error
+//   }
+// );
 document.getElementById('submitBtn').addEventListener('click',function ()
 {console.log("hi")
 MessengerExtensions.requestCloseBrowser(function success() {
   console.log("bye")
   // webview closed
   let dataBody = {
-    psid: document.getElementById("psid").value,
+    // psid: document.getElementById("psid").value,
     name: document.getElementById("name").value,
     country: document.getElementById("country").value,
     email: document.getElementById("email").value,
