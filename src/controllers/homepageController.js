@@ -230,13 +230,24 @@ let handleSetupInfor =async (req,res)=>{
 
 }
 let handleGetSurveyPage = (req,res)=>{
-return res.render('survey.ejs')
+    let facebookAppId = process.env.FACEBOOK_APP_ID
+return res.render('survey.ejs' , {
+    facebookAppId :facebookAppId
+})
+}
+let handlePostSurvey = (req,res)=>{
+   console.log('data from webview')
+   console.log('psid' , req.body.psid)
+   console.log('name' , req.body.name)
+   return res.status(200).json({
+       message: 'ok'
+   })
 }
 module.exports = {
     getHomepage: getHomepage,
     getWebhook: getWebhook,
     postWebhook: postWebhook,
     handleSetupInfor:handleSetupInfor,
-    handleGetSurveyPage:handleGetSurveyPage
-
+    handleGetSurveyPage:handleGetSurveyPage,
+    handlePostSurvey:handlePostSurvey,
 };

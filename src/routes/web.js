@@ -11,6 +11,7 @@ let initWebRoutes = (app) => {
     router.post("/webhook", homepageController.postWebhook);
     router.post("/setup", homepageController.handleSetupInfor); //persistent menu
     router.get("/get-survey", homepageController.handleGetSurveyPage); //webviews
+    router.post("/post-survey", homepageController.handlePostSurvey); //webviews
 
 
     return app.use("/", router);
