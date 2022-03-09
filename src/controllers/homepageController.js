@@ -146,7 +146,7 @@ let handleMessage = (sender_psid, message) => {
                 "text": `Is that your number, darling?`
             }
         }
-        if(entityChosen === "wit$email"){
+        if(entityChosen === "wit$email:email"){
             //send bye message
             response = {
                 "text": `Is that your email, darling?`
