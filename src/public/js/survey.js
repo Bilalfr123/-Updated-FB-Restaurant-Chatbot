@@ -10,7 +10,7 @@ window.extAsyncInit = function () {
   console.log(`err`)
   // the Messenger Extensions JS SDK is done loading 
   // get user PSID
-    MessengerExtensions.getContext( 324579282843200 , 
+    MessengerExtensions.getContext( facebookAppId , 
     function success(thread_context){
         let userPSID = thread_context.psid;
         console.log(userPSID)
@@ -22,7 +22,15 @@ window.extAsyncInit = function () {
         // error
           }
         );
-
+        const APP_ID = '<324579282843200>';
+        MessengerExtensions.getContext(APP_ID, (uids) => {
+          /** Do more stuff here */
+          let userSID = uids.psid;
+          console.log(userSID)
+        }, (error, errorMessage) => {
+          console.error('Error occurred -', errorMessage);
+          console.error(error);
+        });
       $('#submitBtn').on('click', function () 
 {console.log("hi")
 // window.top.close() 
