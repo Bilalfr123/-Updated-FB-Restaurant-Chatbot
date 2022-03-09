@@ -92,7 +92,7 @@ let handleMessage = (sender_psid, message) => {
     //     }
     // }
             //send bye message
-    let entitiesArr = [   "wit$email", 	
+    let entitiesArr = [   "wit$email:email", 	
     "wit$sentiment"];
     // let entitiesArr = [ "wit$greetings", "wit$thanks", "wit$bye" , "wit$datetime", "wit$amount_of_money", "wit$phone_number",  "wit$email", "wit$distance", "wit$quantity", "wit$temperature", "wit$location", "wit$url", "wit$duration", 	
     // "wit$sentiment"];
@@ -146,18 +146,18 @@ let handleMessage = (sender_psid, message) => {
                 "text": `Is that your number, darling?`
             }
         }
-        if(entityChosen === "wit$email:email"){
+        if(entityChosen === "wit$email"){
             //send bye message
             response = {
                 "text": `Is that your email, darling?`
             }
         }
-        if(entityChosen === "wit$distance"){
-            //send bye message
-            response = {
-                "text": `what distance are you talking about?`
-            }
-        }
+        // if(entityChosen === "wit$distance"){
+        //     //send bye message
+        //     response = {
+        //         "text": `what distance are you talking about?`
+        //     }
+        // }
         if(entityChosen === "wit$quantity"){
             //send bye message
             response = {
