@@ -74,9 +74,7 @@ let postWebhook = (req, res) => {
     }
 
 };
-function firstTrait(nlp, name) {
-    return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
-}
+
 
 let callSendAPI = (sender_psid, response) => {
     // Construct the message body
@@ -107,7 +105,7 @@ let callSendAPI = (sender_psid, response) => {
         return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
       }
       
-      function handleMessage(sender_psid,message) {
+      let handleMessage =(sender_psid,message) =>{
         let response;
         // check greeting is here and is confident
         const greeting = firstTrait(message.nlp, 'wit$greetings');
