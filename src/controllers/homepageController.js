@@ -78,88 +78,50 @@ function firstTrait(nlp, name) {
     return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
 }
 
-function handleMessage(sender_psid, message) {
-    //handle message for react, like press like button
-    // id like button: sticker_id 369239263222822
-
-    if( message && message.attachments && message.attachments[0].payload){
-        callSendAPI(sender_psid, "Thank you for watching my video !!!");
-        callSendAPIWithTemplate(sender_psid);
-        return;
-    }
-
-    let entitiesArr = [ "wit$greetings", "wit$thanks", "wit$bye" ];
-    let entityChosen = "";
-    entitiesArr.forEach((name) => {
-        let entity = firstTrait(message.nlp, name);
-        if (entity && entity.confidence > 0.8) {
-            entityChosen = name;
-        }
-    });
-
-    if(entityChosen === ""){
-        //default
-        callSendAPI(sender_psid,`The bot is needed more training, try to say "thanks a lot" or "hi" to the bot` );
-    }else{
-       if(entityChosen === "wit$greetings"){
-           //send greetings message
-           callSendAPI(sender_psid,'Hi there! This bot is created by Hary Pham. Watch more videos on HaryPhamDev Channel!');
-       }
-       if(entityChosen === "wit$thanks"){
-           //send thanks message
-           callSendAPI(sender_psid,`You 're welcome!`);
-       }
-        if(entityChosen === "wit$bye"){
-            //send bye message
-            callSendAPI(sender_psid,'bye-bye!');
-        }
-    }
-}
-
-let callSendAPIWithTemplate = (sender_psid) => {
-    // document fb message template
-    // https://developers.facebook.com/docs/messenger-platform/send-messages/templates
-    let body = {
+let callSendAPI = (sender_psid, response) => {
+    // Construct the message body
+    let request_body = {
         "recipient": {
             "id": sender_psid
         },
-        "message": {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [
-                        {
-                            "title": "Want to build sth awesome?",
-                            "image_url": "https://www.nexmo.com/wp-content/uploads/2018/10/build-bot-messages-api-768x384.png",
-                            "subtitle": "Watch more videos on my youtube channel ^^",
-                            "buttons": [
-                                {
-                                    "type": "web_url",
-                                    "url": "https://bit.ly/subscribe-haryphamdev",
-                                    "title": "Watch now"
-                                }
-                            ]
-                        }
-                    ]
-                }
-            }
-        }
+        "message": response
     };
 
+    // Send the HTTP request to the Messenger Platform
     request({
         "uri": "https://graph.facebook.com/v6.0/me/messages",
-        "qs": { "access_token": process.env.FB_PAGE_TOKEN },
+        "qs": { "access_token": PAGE_ACCESS_TOKEN },
         "method": "POST",
-        "json": body
+        "json": request_body
     }, (err, res, body) => {
+        console.log(`xhwxk error message 1111111111111111`)
+        console.log(res)
+        console.log(`xhwxk error message 22222222222222222`)
         if (!err) {
-            // console.log('message sent!')
+            console.log('message sent!')
         } else {
             console.error("Unable to send message:" + err);
         }
     });
-};
+    function firstTrait(nlp, name) {
+        return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
+      }
+      
+      function handleMessage(sender_psid,message) {
+        let response;
+        // check greeting is here and is confident
+        const greeting = firstTrait(message.nlp, 'wit$greetings');
+        if (greeting && greeting.confidence > 0.8) {
+            response = {
+                            "text": `hellothere`
+                        }
+        } else { 
+            response = {
+                "text": `send me greeting`
+            }
+        }
+        callSendAPI(sender_psid, response);
+      }
 // Handles messages events
 // let handleMessage = (sender_psid, received_message) => {
 //     let response;
@@ -229,31 +191,6 @@ let handlePostback = (sender_psid, received_postback) => {
 };
 
 // Sends response messages via the Send API
-let callSendAPI = (sender_psid, response) => {
-    // Construct the message body
-    let request_body = {
-        "recipient": {
-            "id": sender_psid
-        },
-        "message": response
-    };
-
-    // Send the HTTP request to the Messenger Platform
-    request({
-        "uri": "https://graph.facebook.com/v6.0/me/messages",
-        "qs": { "access_token": PAGE_ACCESS_TOKEN },
-        "method": "POST",
-        "json": request_body
-    }, (err, res, body) => {
-        console.log(`xhwxk error message 1111111111111111`)
-        console.log(res)
-        console.log(`xhwxk error message 22222222222222222`)
-        if (!err) {
-            console.log('message sent!')
-        } else {
-            console.error("Unable to send message:" + err);
-        }
-    });
 };
 
 let handleSetupInfor =async (req,res)=>{
