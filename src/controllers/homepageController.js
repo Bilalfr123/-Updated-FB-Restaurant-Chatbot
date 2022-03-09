@@ -91,7 +91,9 @@ let handleMessage = (sender_psid, message) => {
     //         "text": `You sent the message: bye. Now send me an attachment!`
     //     }
     // }
-    let entitiesArr = [ "wit$greetings", "wit$thanks", "wit$bye" ];
+            //send bye message
+    let entitiesArr = [ "wit$greetings", "wit$thanks", "wit$bye" , "wit$datetime:$datetime", "wit$wit$amount_of_money:amount_of_money", "wit$phone_number:phone_number",  "wit$email:email", "wit$distance:distance", "wit$quantity:quantity", "wit$temperature:temperature", "wit$location:location", "wit$url:url", "wit$duration:duration", 	
+    "wit$sentiment"];
     let entityChosen = "";
     entitiesArr.forEach((name) => {
         let entity = firstTrait(message.nlp, name);
@@ -142,22 +144,10 @@ let handleMessage = (sender_psid, message) => {
                 "text": `Is that your number, darling?`
             }
         }
-        if(entityChosen === "wit$phone_number:phone_number"){
-            //send bye message
-            response = {
-                "text": `Is that your number, darling?`
-            }
-        }
         if(entityChosen === "wit$email:email"){
             //send bye message
             response = {
                 "text": `Is that your email, darling?`
-            }
-        }
-        if(entityChosen === "wit$distance:distance"){
-            //send bye message
-            response = {
-                "text": `what distance are you talking about?`
             }
         }
         if(entityChosen === "wit$distance:distance"){
@@ -196,7 +186,7 @@ let handleMessage = (sender_psid, message) => {
                 "text": `What URL is this?`
             }
         }
-        if(entityChosen === "Sentiment"){
+        if(entityChosen === "wit$sentiment"){
             //send bye message
             response = {
                 "text": `Sentiments huh!`
