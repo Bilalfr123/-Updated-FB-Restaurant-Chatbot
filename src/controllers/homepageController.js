@@ -74,6 +74,88 @@ let postWebhook = (req, res) => {
     }
 
 };
+function firstTrait(nlp, name) {
+    return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
+  }
+  
+  function handleMessage(message) {
+    // check greeting is here and is confident
+    const greeting = firstTrait(message.nlp, 'wit$greetings');
+    if (greeting && greeting.confidence > 0.8) {
+      sendResponse('Hi there!');
+    } else { 
+      // default logic
+    }
+  }
+// Handles messages events
+// let handleMessage = (sender_psid, received_message) => {
+//     let response;
+    
+//     // Checks if the message contains text
+//     if (received_message.text) {
+//         // Create the payload for a basic text message, which
+//         // will be added to the body of our request to the Send API
+//         response = {
+//             "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+//         }
+//     } else if (received_message.attachments) {
+//         // Get the URL of the message attachment
+//         let attachment_url = received_message.attachments[0].payload.url;
+//         response = {
+//             "attachment": {
+//                 "type": "template",
+//                 "payload": {
+//                     "template_type": "generic",
+//                     "elements": [{
+//                         "title": "Is this the right picture?",
+//                         "subtitle": "Tap a button to answer.",
+//                         "image_url": attachment_url,
+//                         "buttons": [
+//                             {
+//                                 "type": "postback",
+//                                 "title": "Yes!",
+//                                 "payload": "yes",
+//                             },
+//                             {
+//                                 "type": "postback",
+//                                 "title": "No!",
+//                                 "payload": "no",
+//                             }
+//                         ],
+//                     }]
+//                 }
+//             }
+//         }
+//     }
+    
+//     // Send the response message
+//     callSendAPI(sender_psid, response);
+// };
+
+
+
+// Handles messaging_postbacks events
+let handlePostback = (sender_psid, received_postback) => {
+    let response;
+
+    // Get the payload for the postback
+    let payload = received_postback.payload;
+
+    // Set the response based on the postback payload
+    if (payload === 'yes') {
+        response = { "text": "Thanks!" }
+    } else if (payload === 'no') {
+        response = { "text": "Oops, try sending another image." }
+    }
+     else if (payload === 'GET_STARTED_PAYLOAD') {
+       response = homepageService.handleGetStartedButton();
+    } else if (payload === 'RESTART_CONVERSATION') {
+        response = homepageService.handleGetStartedButton();
+    }
+  
+    // Send the message to acknowledge the postback
+    callSendAPI(sender_psid, response);
+};
 
 
 let callSendAPI = (sender_psid, response) => {
@@ -101,75 +183,6 @@ let callSendAPI = (sender_psid, response) => {
             console.error("Unable to send message:" + err);
         }
     });
-
-// Handles messages events
-let handleMessage = (sender_psid, received_message) => {
-    let response;
-
-    // Checks if the message contains text
-    if (received_message.text) {
-        // Create the payload for a basic text message, which
-        // will be added to the body of our request to the Send API
-        response = {
-            "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
-        }
-    } else if (received_message.attachments) {
-        // Get the URL of the message attachment
-        let attachment_url = received_message.attachments[0].payload.url;
-        response = {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [{
-                        "title": "Is this the right picture?",
-                        "subtitle": "Tap a button to answer.",
-                        "image_url": attachment_url,
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Yes!",
-                                "payload": "yes",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "No!",
-                                "payload": "no",
-                            }
-                        ],
-                    }]
-                }
-            }
-        }
-    }
-
-    // Send the response message
-    callSendAPI(sender_psid, response);
-};
-
-// Handles messaging_postbacks events
-let handlePostback = (sender_psid, received_postback) => {
-    let response;
-
-    // Get the payload for the postback
-    let payload = received_postback.payload;
-
-    // Set the response based on the postback payload
-    if (payload === 'yes') {
-        response = { "text": "Thanks!" }
-    } else if (payload === 'no') {
-        response = { "text": "Oops, try sending another image." }
-    }
-     else if (payload === 'GET_STARTED_PAYLOAD') {
-       response = homepageService.handleGetStartedButton();
-    } else if (payload === 'RESTART_CONVERSATION') {
-        response = homepageService.handleGetStartedButton();
-    }
-  
-    // Send the message to acknowledge the postback
-    callSendAPI(sender_psid, response);
-};
-
 // Sends response messages via the Send API
 };
 
