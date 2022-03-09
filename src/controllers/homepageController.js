@@ -74,51 +74,91 @@ let postWebhook = (req, res) => {
     }
 
 };
+function firstTrait(nlp, name) {
+    return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
+}
 
-// Handles messages events
-let handleMessage = (sender_psid, received_message) => {
-    let response;
+function handleMessage(sender_psid, message) {
+    //handle message for react, like press like button
+    // id like button: sticker_id 369239263222822
 
-    // Checks if the message contains text
-    if (received_message.text) {
-        // Create the payload for a basic text message, which
-        // will be added to the body of our request to the Send API
-        response = {
-            "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
-        }
-    } else if (received_message.attachments) {
-        // Get the URL of the message attachment
-        let attachment_url = received_message.attachments[0].payload.url;
-        response = {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [{
-                        "title": "Is this the right picture?",
-                        "subtitle": "Tap a button to answer.",
-                        "image_url": attachment_url,
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Yes!",
-                                "payload": "yes",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "No!",
-                                "payload": "no",
-                            }
-                        ],
-                    }]
-                }
-            }
-        }
+    if( message && message.attachments && message.attachments[0].payload){
+        callSendAPI(sender_psid, "Thank you for watching my video !!!");
+        callSendAPIWithTemplate(sender_psid);
+        return;
     }
 
-    // Send the response message
-    callSendAPI(sender_psid, response);
-};
+    let entitiesArr = [ "wit$greetings", "wit$thanks", "wit$bye" ];
+    let entityChosen = "";
+    entitiesArr.forEach((name) => {
+        let entity = firstTrait(message.nlp, name);
+        if (entity && entity.confidence > 0.8) {
+            entityChosen = name;
+        }
+    });
+
+    if(entityChosen === ""){
+        //default
+        callSendAPI(sender_psid,`The bot is needed more training, try to say "thanks a lot" or "hi" to the bot` );
+    }else{
+       if(entityChosen === "wit$greetings"){
+           //send greetings message
+           callSendAPI(sender_psid,'Hi there! This bot is created by Hary Pham. Watch more videos on HaryPhamDev Channel!');
+       }
+       if(entityChosen === "wit$thanks"){
+           //send thanks message
+           callSendAPI(sender_psid,`You 're welcome!`);
+       }
+        if(entityChosen === "wit$bye"){
+            //send bye message
+            callSendAPI(sender_psid,'bye-bye!');
+        }
+    }
+}
+// Handles messages events
+// let handleMessage = (sender_psid, received_message) => {
+//     let response;
+
+//     // Checks if the message contains text
+//     if (received_message.text) {
+//         // Create the payload for a basic text message, which
+//         // will be added to the body of our request to the Send API
+//         response = {
+//             "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+//         }
+//     } else if (received_message.attachments) {
+//         // Get the URL of the message attachment
+//         let attachment_url = received_message.attachments[0].payload.url;
+//         response = {
+//             "attachment": {
+//                 "type": "template",
+//                 "payload": {
+//                     "template_type": "generic",
+//                     "elements": [{
+//                         "title": "Is this the right picture?",
+//                         "subtitle": "Tap a button to answer.",
+//                         "image_url": attachment_url,
+//                         "buttons": [
+//                             {
+//                                 "type": "postback",
+//                                 "title": "Yes!",
+//                                 "payload": "yes",
+//                             },
+//                             {
+//                                 "type": "postback",
+//                                 "title": "No!",
+//                                 "payload": "no",
+//                             }
+//                         ],
+//                     }]
+//                 }
+//             }
+//         }
+//     }
+
+//     // Send the response message
+//     callSendAPI(sender_psid, response);
+// };
 
 // Handles messaging_postbacks events
 let handlePostback = (sender_psid, received_postback) => {
@@ -170,48 +210,6 @@ let callSendAPI = (sender_psid, response) => {
         }
     });
 };
-
-function firstTrait(nlp, name) {
-    return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
-}
-
-function handleMessages(sender_psid, message) {
-    //handle message for react, like press like button
-    // id like button: sticker_id 369239263222822
-
-    if( message && message.attachments && message.attachments[0].payload){
-        callSendAPI(sender_psid, "Thank you for watching my video !!!");
-        callSendAPIWithTemplate(sender_psid);
-        return;
-    }
-
-    let entitiesArr = [ "wit$greetings", "wit$thanks", "wit$bye" ];
-    let entityChosen = "";
-    entitiesArr.forEach((name) => {
-        let entity = firstTrait(message.nlp, name);
-        if (entity && entity.confidence > 0.8) {
-            entityChosen = name;
-        }
-    });
-
-    if(entityChosen === ""){
-        //default
-        callSendAPI(sender_psid,`The bot needs more training, try to say "thanks a lot" or "hi" to the bot` );
-    }else{
-       if(entityChosen === "wit$greetings"){
-           //send greetings message
-           callSendAPI(sender_psid,'Hi there! This bot is created by Hary Pham. Watch more videos on HaryPhamDev Channel!');
-       }
-       if(entityChosen === "wit$thanks"){
-           //send thanks message
-           callSendAPI(sender_psid,`You 're welcome!`);
-       }
-        if(entityChosen === "wit$bye"){
-            //send bye message
-            callSendAPI(sender_psid,'bye-bye!');
-        }
-    }
-}
 
 let handleSetupInfor =async (req,res)=>{
     //call fb api
