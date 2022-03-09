@@ -81,15 +81,45 @@ function firstTrait(nlp, name) {
 let handleMessage = (sender_psid, message) => {
     let response;
     // check greeting is here and is confident
-    const greeting = firstTrait(message.nlp, 'wit$greetings');
-    if (greeting && greeting.confidence > 0.8) {
-        response = {
-                        "text": `You sent the message: hi. Now send me an attachment!`
-                    }
-    } else { 
-        response = {
-            "text": `You sent the message: bye. Now send me an attachment!`
+    // const greeting = firstTrait(message.nlp, 'wit$greetings');
+    // if (greeting && greeting.confidence > 0.8) {
+    //     response = {
+    //                     "text": `You sent the message: hi. Now send me an attachment!`
+    //                 }
+    // } else { 
+    //     response = {
+    //         "text": `You sent the message: bye. Now send me an attachment!`
+    //     }
+    // }
+    let entitiesArr = [ "wit$greetings", "wit$thanks", "wit$bye" ];
+    let entityChosen = "";
+    entitiesArr.forEach((name) => {
+        let entity = firstTrait(message.nlp, name);
+        if (entity && entity.confidence > 0.8) {
+            entityChosen = name;
         }
+    });
+
+    if(entityChosen === ""){
+        //default
+        response = {
+                                "text": `You sent the message: lol. Now send me an attachment!`
+                            }
+    }else{
+       if(entityChosen === "wit$greetings"){
+           //send greetings message
+           response = {
+                                "text": `You sent the message: hi. Now send me an attachment!`
+                            }
+       }
+    //    if(entityChosen === "wit$thanks"){
+    //        //send thanks message
+    //        callSendAPI(sender_psid,`You 're welcome!`);
+    //    }
+    //     if(entityChosen === "wit$bye"){
+    //         //send bye message
+    //         callSendAPI(sender_psid,'bye-bye!');
+    //     }
     }
         callSendAPI(sender_psid, response);
   }
