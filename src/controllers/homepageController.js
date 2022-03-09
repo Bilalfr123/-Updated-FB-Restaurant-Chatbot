@@ -92,8 +92,10 @@ let handleMessage = (sender_psid, message) => {
     //     }
     // }
             //send bye message
-    let entitiesArr = [ "wit$greetings", "wit$thanks", "wit$bye" , "wit$datetime", "wit$wit$amount_of_money", "wit$phone_number",  "wit$email", "wit$distance", "wit$quantity", "wit$temperature", "wit$location", "wit$url", "wit$duration", 	
+    let entitiesArr = [   "wit$email", 	
     "wit$sentiment"];
+    // let entitiesArr = [ "wit$greetings", "wit$thanks", "wit$bye" , "wit$datetime", "wit$amount_of_money", "wit$phone_number",  "wit$email", "wit$distance", "wit$quantity", "wit$temperature", "wit$location", "wit$url", "wit$duration", 	
+    // "wit$sentiment"];
     let entityChosen = "";
     entitiesArr.forEach((name) => {
         let entity = firstTrait(message.nlp, name);
