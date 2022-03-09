@@ -92,7 +92,7 @@ let handleMessage = (sender_psid, message) => {
     //     }
     // }
             //send bye message
-    let entitiesArr = [ "wit$greetings", "wit$thanks", "wit$bye" , "wit$datetime:$datetime", "wit$wit$amount_of_money:amount_of_money", "wit$phone_number:phone_number",  "wit$email:email", "wit$distance:distance", "wit$quantity:quantity", "wit$temperature:temperature", "wit$location:location", "wit$url:url", "wit$duration:duration", 	
+    let entitiesArr = [ "wit$greetings", "wit$thanks", "wit$bye" , "wit$datetime", "wit$wit$amount_of_money", "wit$phone_number",  "wit$email", "wit$distance", "wit$quantity", "wit$temperature", "wit$location", "wit$url", "wit$duration", 	
     "wit$sentiment"];
     let entityChosen = "";
     entitiesArr.forEach((name) => {
@@ -126,61 +126,61 @@ let handleMessage = (sender_psid, message) => {
                 "text": `bye-bye`
             }
         }
-        if(entityChosen === "wit$datetime:$datetime"){
+        if(entityChosen === "wit$datetime"){
             //send bye message
             response = {
                 "text": `Are you planning to meet someone?`
             }
         }
-        if(entityChosen === "wit$wit$amount_of_money:amount_of_money"){
+        if(entityChosen === "wit$wit$amount_of_money"){
             //send bye message
             response = {
                 "text": `Woah! Talking about money 💲💲`
             }
         }
-        if(entityChosen === "wit$phone_number:phone_number"){
+        if(entityChosen === "wit$phone_number"){
             //send bye message
             response = {
                 "text": `Is that your number, darling?`
             }
         }
-        if(entityChosen === "wit$email:email"){
+        if(entityChosen === "wit$email"){
             //send bye message
             response = {
                 "text": `Is that your email, darling?`
             }
         }
-        if(entityChosen === "wit$distance:distance"){
+        if(entityChosen === "wit$distance"){
             //send bye message
             response = {
                 "text": `what distance are you talking about?`
             }
         }
-        if(entityChosen === "wit$quantity:quantity"){
+        if(entityChosen === "wit$quantity"){
             //send bye message
             response = {
                 "text": `The quantity of what?`
             }
         }
-        if(entityChosen === "wit$temperature:temperature"){
+        if(entityChosen === "wit$temperature"){
             //send bye message
             response = {
                 "text": `Talking about temperature yoho hotness baby🔥`
             }
         }
-        if(entityChosen === "wit$location:location"){
+        if(entityChosen === "wit$location"){
             //send bye message
             response = {
                 "text": `Send me picture of the place you talking about!`
             }
         }
-        if(entityChosen === "wit$duration:duration"){
+        if(entityChosen === "wit$duration"){
             //send bye message
             response = {
                 "text": `This much time is left for your marriage?`
             }
         }
-        if(entityChosen === "wit$url:url"){
+        if(entityChosen === "wit$url"){
             //send bye message
             response = {
                 "text": `What URL is this?`
