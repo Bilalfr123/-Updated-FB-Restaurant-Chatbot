@@ -81,7 +81,7 @@ function firstTrait(nlp, name) {
 let handleMessage = (sender_psid, message) => {
     let response;
     // check greeting is here and is confident
-    const greeting = firstTrait(message.nlp, 'wit$email:email');
+    const greeting = firstTrait(message.nlp, 'wit$email');
     if (greeting && greeting.confidence > 0.8) {
         response = {
                         "text": `You sent the message: hi. Now send me an attachment!`
