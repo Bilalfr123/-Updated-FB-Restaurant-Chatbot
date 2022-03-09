@@ -201,7 +201,7 @@ let postWebhook = (req, res) => {
 // Handles messages events
 let handleMessage = (sender_psid, received_message) => {
     let response;
-    let response1;
+    
     
     // Checks if the message contains text
     if (received_message.text) {
@@ -211,7 +211,7 @@ let handleMessage = (sender_psid, received_message) => {
             "text": `You sent the message: "${received_message.text}". Now send me an attachment!`,
             
         }
-        response1 = {
+        response = {
             "text": `You sent the message: hello. Now send me an attachment!`,
 
         }
@@ -247,7 +247,7 @@ let handleMessage = (sender_psid, received_message) => {
     
     // Send the response message
     callSendAPI(sender_psid, response);
-    callSendAPI(sender_psid, response1);
+
 };
 
 
