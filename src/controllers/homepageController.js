@@ -123,6 +123,7 @@ let handleMessage = (sender_psid, message) => {
             response = {
                 "text": `bye-bye`
             }
+        }
         if(entityChosen === "wit$datetime:$datetime"){
             //send bye message
             response = {
@@ -201,7 +202,7 @@ let handleMessage = (sender_psid, message) => {
                 "text": `Sentiments huh!`
             }
         }
-        }
+        
     }
         callSendAPI(sender_psid, response);
   }
