@@ -18,15 +18,16 @@ window.extAsyncInit = function () {
     
     //   },
     //   function error(err){
-    //   console.log(err)
-    //   // error
-    //     }
-    //   );
-    MessengerExtensions.getUserID(function success(uids) {
-      var psid = uids.psid;
-      alert(psid);
+      //   console.log(err)
+      //   // error
+      //     }
+      //   );
+      MessengerExtensions.getUserID(function success(uids) {
+        var psid = uids.psid;
+        console.log(psid);
+            document.getElementById("psid").value =psid
   }, function error(err) {
-      alert("Messenger Extension Error: " + err);
+      console.log("Messenger Extension Error: " + err);
   });
       $('#submitBtn').on('click', function () 
 {console.log("hi")
