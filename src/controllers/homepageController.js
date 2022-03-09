@@ -104,21 +104,15 @@ let callSendAPI = (sender_psid, response) => {
     function firstTrait(nlp, name) {
         return nlp && nlp.entities && nlp.traits[name] && nlp.traits[name][0];
       }
-      
-      let handleMessage =(sender_psid,message) =>{
-        let response;
-        // check greeting is here and is confident
-        const greeting = firstTrait(message.nlp, 'wit$greetings');
-        if (greeting && greeting.confidence > 0.8) {
-            response = {
-                            "text": `hellothere`
-                        }
-        } else { 
-            response = {
-                "text": `send me greeting`
-            }
+      let handleMessage = (sender_psid,message) => {
+      const greeting = firstTrait(message.nlp, 'wit$greetings');
+      if (greeting && greeting.confidence > 0.8) {
+        sendResponse('Hi there!');
+      } else { 
+     
+                sendResponse('Hi thepre!');
+         
         }
-        callSendAPI(sender_psid, response);
       }
 // Handles messages events
 // let handleMessage = (sender_psid, received_message) => {
