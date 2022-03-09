@@ -81,121 +81,121 @@ function firstTrait(nlp, name) {
 let handleMessage = (sender_psid, message) => {
     let response;
     // check greeting is here and is confident
-    // const greeting = firstTrait(message.nlp, 'wit$greetings');
-    // if (greeting && greeting.confidence > 0.8) {
-    //     response = {
-    //                     "text": `You sent the message: hi. Now send me an attachment!`
-    //                 }
-    // } else { 
-    //     response = {
-    //         "text": `You sent the message: bye. Now send me an attachment!`
-    //     }
-    // }
+    const greeting = firstTrait(message.nlp, 'wit$email:email');
+    if (greeting && greeting.confidence > 0.8) {
+        response = {
+                        "text": `You sent the message: hi. Now send me an attachment!`
+                    }
+    } else { 
+        response = {
+            "text": `You sent the message: bye. Now send me an attachment!`
+        }
+    }
             //send bye message
-    let entitiesArr = [   "wit$email:email", 	
-    "wit$sentiment"];
+    // let entitiesArr = [   "wit$email:email", 	
+    // "wit$sentiment"];
     // let entitiesArr = [ "wit$greetings", "wit$thanks", "wit$bye" , "wit$datetime", "wit$amount_of_money", "wit$phone_number",  "wit$email", "wit$distance", "wit$quantity", "wit$temperature", "wit$location", "wit$url", "wit$duration", 	
     // "wit$sentiment"];
-    let entityChosen = "";
-    entitiesArr.forEach((name) => {
-        let entity = firstTrait(message.nlp, name);
-        if (entity && entity.confidence > 0.8) {
-            entityChosen = name;
-        }
-    });
+    // let entityChosen = "";
+    // entitiesArr.forEach((name) => {
+    //     let entity = firstTrait(message.nlp, name);
+    //     if (entity && entity.confidence > 0.8) {
+    //         entityChosen = name;
+    //     }
+    // });
 
-    if(entityChosen === ""){
-        //default
-        response = {
-                                "text": `You sent the message: ${message.text}. Now send me an attachment!`
-                            }
-    }else{
-       if(entityChosen === "wit$greetings"){
-           //send greetings message
-           response = {
-                                "text": `Hey there!`
-                            }
-       }
-       if(entityChosen === "wit$thanks"){
-           //send thanks message
-           response = {
-            "text": `You are welcome! `
-        }
-       }
-        if(entityChosen === "wit$bye"){
-            //send bye message
-            response = {
-                "text": `bye-bye`
-            }
-        }
-        if(entityChosen === "wit$datetime"){
-            //send bye message
-            response = {
-                "text": `Are you planning to meet someone?`
-            }
-        }
-        if(entityChosen === "wit$wit$amount_of_money"){
-            //send bye message
-            response = {
-                "text": `Woah! Talking about money 💲💲`
-            }
-        }
-        if(entityChosen === "wit$phone_number"){
-            //send bye message
-            response = {
-                "text": `Is that your number, darling?`
-            }
-        }
-        if(entityChosen === "wit$email:email"){
-            //send bye message
-            response = {
-                "text": `Is that your email, darling?`
-            }
-        }
-        // if(entityChosen === "wit$distance"){
-        //     //send bye message
-        //     response = {
-        //         "text": `what distance are you talking about?`
-        //     }
-        // }
-        if(entityChosen === "wit$quantity"){
-            //send bye message
-            response = {
-                "text": `The quantity of what?`
-            }
-        }
-        if(entityChosen === "wit$temperature"){
-            //send bye message
-            response = {
-                "text": `Talking about temperature yoho hotness baby🔥`
-            }
-        }
-        if(entityChosen === "wit$location"){
-            //send bye message
-            response = {
-                "text": `Send me picture of the place you talking about!`
-            }
-        }
-        if(entityChosen === "wit$duration"){
-            //send bye message
-            response = {
-                "text": `This much time is left for your marriage?`
-            }
-        }
-        if(entityChosen === "wit$url"){
-            //send bye message
-            response = {
-                "text": `What URL is this?`
-            }
-        }
-        if(entityChosen === "wit$sentiment"){
-            //send bye message
-            response = {
-                "text": `Sentiments huh!`
-            }
-        }
+    // if(entityChosen === ""){
+    //     //default
+    //     response = {
+    //                             "text": `You sent the message: ${message.text}. Now send me an attachment!`
+    //                         }
+    // }else{
+    //    if(entityChosen === "wit$greetings"){
+    //        //send greetings message
+    //        response = {
+    //                             "text": `Hey there!`
+    //                         }
+    //    }
+    //    if(entityChosen === "wit$thanks"){
+    //        //send thanks message
+    //        response = {
+    //         "text": `You are welcome! `
+    //     }
+    //    }
+    //     if(entityChosen === "wit$bye"){
+    //         //send bye message
+    //         response = {
+    //             "text": `bye-bye`
+    //         }
+    //     }
+    //     if(entityChosen === "wit$datetime"){
+    //         //send bye message
+    //         response = {
+    //             "text": `Are you planning to meet someone?`
+    //         }
+    //     }
+    //     if(entityChosen === "wit$wit$amount_of_money"){
+    //         //send bye message
+    //         response = {
+    //             "text": `Woah! Talking about money 💲💲`
+    //         }
+    //     }
+    //     if(entityChosen === "wit$phone_number"){
+    //         //send bye message
+    //         response = {
+    //             "text": `Is that your number, darling?`
+    //         }
+    //     }
+    //     if(entityChosen === "wit$email:email"){
+    //         //send bye message
+    //         response = {
+    //             "text": `Is that your email, darling?`
+    //         }
+    //     }
+    //     // if(entityChosen === "wit$distance"){
+    //     //     //send bye message
+    //     //     response = {
+    //     //         "text": `what distance are you talking about?`
+    //     //     }
+    //     // }
+    //     if(entityChosen === "wit$quantity"){
+    //         //send bye message
+    //         response = {
+    //             "text": `The quantity of what?`
+    //         }
+    //     }
+    //     if(entityChosen === "wit$temperature"){
+    //         //send bye message
+    //         response = {
+    //             "text": `Talking about temperature yoho hotness baby🔥`
+    //         }
+    //     }
+    //     if(entityChosen === "wit$location"){
+    //         //send bye message
+    //         response = {
+    //             "text": `Send me picture of the place you talking about!`
+    //         }
+    //     }
+    //     if(entityChosen === "wit$duration"){
+    //         //send bye message
+    //         response = {
+    //             "text": `This much time is left for your marriage?`
+    //         }
+    //     }
+    //     if(entityChosen === "wit$url"){
+    //         //send bye message
+    //         response = {
+    //             "text": `What URL is this?`
+    //         }
+    //     }
+    //     if(entityChosen === "wit$sentiment"){
+    //         //send bye message
+    //         response = {
+    //             "text": `Sentiments huh!`
+    //         }
+    //     }
         
-    }
+    // }
         callSendAPI(sender_psid, response);
   }
 // Handles messages events
