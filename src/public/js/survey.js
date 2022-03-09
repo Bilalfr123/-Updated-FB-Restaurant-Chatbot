@@ -22,7 +22,7 @@ window.extAsyncInit = function () {
         // error
           }
         );
-        const APP_ID = '<324579282843200>';
+        const APP_ID = '324579282843200';
         MessengerExtensions.getContext(APP_ID, (uids) => {
           /** Do more stuff here */
           let userSID = uids.psid;
