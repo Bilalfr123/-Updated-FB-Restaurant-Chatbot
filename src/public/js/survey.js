@@ -9,26 +9,20 @@
 window.extAsyncInit = function () {
   console.log(`err`)
   // the Messenger Extensions JS SDK is done loading 
-  //get user PSID
-    // MessengerExtensions.getContext( facebookAppId , 
-    // function success(thread_context){
-    //     let userPSID = thread_context.psid;
-    //     console.log(userPSID)
-    //     document.getElementById("psid").value = userPSID
+  // get user PSID
+    MessengerExtensions.getContext( facebookAppId , 
+    function success(thread_context){
+        let userPSID = thread_context.psid;
+        console.log(userPSID)
+        document.getElementById("psid").value = userPSID
     
-    //   },
-    //   function error(err){
-      //   console.log(err)
-      //   // error
-      //     }
-      //   );
-      MessengerExtensions.getUserID(function success(uids) {
-        var psid = uids.psid;
-        console.log(psid);
-            document.getElementById("psid").value =psid
-  }, function error(err) {
-      console.log("Messenger Extension Error: " + err);
-  });
+      },
+      function error(err){
+        console.log(err)
+        // error
+          }
+        );
+
       $('#submitBtn').on('click', function () 
 {console.log("hi")
 // window.top.close() 
