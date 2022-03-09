@@ -103,23 +103,105 @@ let handleMessage = (sender_psid, message) => {
     if(entityChosen === ""){
         //default
         response = {
-                                "text": `You sent the message: lol. Now send me an attachment!`
+                                "text": `You sent the message: ${message.text}. Now send me an attachment!`
                             }
     }else{
        if(entityChosen === "wit$greetings"){
            //send greetings message
            response = {
-                                "text": `You sent the message: hi. Now send me an attachment!`
+                                "text": `Hey there!`
                             }
        }
-    //    if(entityChosen === "wit$thanks"){
-    //        //send thanks message
-    //        callSendAPI(sender_psid,`You 're welcome!`);
-    //    }
-    //     if(entityChosen === "wit$bye"){
-    //         //send bye message
-    //         callSendAPI(sender_psid,'bye-bye!');
-    //     }
+       if(entityChosen === "wit$thanks"){
+           //send thanks message
+           response = {
+            "text": `You are welcome! `
+        }
+       }
+        if(entityChosen === "wit$bye"){
+            //send bye message
+            response = {
+                "text": `bye-bye`
+            }
+        if(entityChosen === "wit$datetime:$datetime"){
+            //send bye message
+            response = {
+                "text": `Are you planning to meet someone?`
+            }
+        }
+        if(entityChosen === "wit$wit$amount_of_money:amount_of_money"){
+            //send bye message
+            response = {
+                "text": `Woah! Talking about money 💲💲`
+            }
+        }
+        if(entityChosen === "wit$phone_number:phone_number"){
+            //send bye message
+            response = {
+                "text": `Is that your number, darling?`
+            }
+        }
+        if(entityChosen === "wit$phone_number:phone_number"){
+            //send bye message
+            response = {
+                "text": `Is that your number, darling?`
+            }
+        }
+        if(entityChosen === "wit$email:email"){
+            //send bye message
+            response = {
+                "text": `Is that your email, darling?`
+            }
+        }
+        if(entityChosen === "wit$distance:distance"){
+            //send bye message
+            response = {
+                "text": `what distance are you talking about?`
+            }
+        }
+        if(entityChosen === "wit$distance:distance"){
+            //send bye message
+            response = {
+                "text": `what distance are you talking about?`
+            }
+        }
+        if(entityChosen === "wit$quantity:quantity"){
+            //send bye message
+            response = {
+                "text": `The quantity of what?`
+            }
+        }
+        if(entityChosen === "wit$temperature:temperature"){
+            //send bye message
+            response = {
+                "text": `Talking about temperature yoho hotness baby🔥`
+            }
+        }
+        if(entityChosen === "wit$location:location"){
+            //send bye message
+            response = {
+                "text": `Send me picture of the place you talking about!`
+            }
+        }
+        if(entityChosen === "wit$duration:duration"){
+            //send bye message
+            response = {
+                "text": `This much time is left for your marriage?`
+            }
+        }
+        if(entityChosen === "wit$url:url"){
+            //send bye message
+            response = {
+                "text": `What URL is this?`
+            }
+        }
+        if(entityChosen === "Sentiment"){
+            //send bye message
+            response = {
+                "text": `Sentiments huh!`
+            }
+        }
+        }
     }
         callSendAPI(sender_psid, response);
   }
